@@ -17,13 +17,13 @@ int setupWifi(const char* ssid,const char* password);
 int setUpHttpClient(String req);
 
 //Save data to the top of the specified topic queue.  保存数据至指定topic队列首位
-int setData(const char *token,const char *field,int val);
+int setData(const char *token,const char *topic,int val);
+
+//Get data from the top of the specified topic queue.  从指定的topic队列首位获取一个数据
+int getData(const char *token,const char *topic, int& result);
 
 //Save data to the top of the specified data list.  保存数据至指定list首位
-int addToList(const char *token,const char *field,int val);
-
-//Delete topic or list, and clear the queue data.  删除指定topic或list，并清空数据
-int removeData(const char *token,const char *field);
+int addToList(const char *token,const char *list,int val);
 
 /*
 Get a set of data from the specified data list and store it in the specified array
@@ -34,7 +34,7 @@ count: the number of read data.  读取数据个数
 */
 int* getData(const char *token,const char *list,int *Array,int offset,int count);
 
-//Get data from the top of the specified topic queue.  从指定的topic队列首位获取一个数据
-int getData(const char *token,const char *topic, int& result);
+//Delete topic or list, and clear the queue data.  删除指定topic或list，并清空数据
+int removeData(const char *token,const char *field);
 
 #endif
