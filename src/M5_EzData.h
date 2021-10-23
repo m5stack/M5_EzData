@@ -9,7 +9,6 @@ date: 2021/10/15
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
-#include <StreamUtils.h>
 
 //Wifi连接
 int setupWifi(const char* ssid,const char* password);
