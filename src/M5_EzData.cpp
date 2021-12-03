@@ -14,8 +14,8 @@ int setupWifi(const char* ssid,const char* password){
     Serial.print(".");
     delay(500);
   }
-  return 1;
   Serial.println("\nWifi connected ok!");
+  return 1;
 }
 
 int setUpHttpClient(String req){
@@ -42,14 +42,17 @@ int setData(const char *token,const char *topic,int val){
   if(httpResponseCode == HTTP_CODE_OK){
     Serial.printf("Success sending data to %s",topic);
     Serial.println(ouput);
+    // Free resources
+    http_client.end();
+    delay(20);
     return 1;
   }else {
     Serial.printf("Fail to save data,response code:%d\n",httpResponseCode);
+    // Free resources
+    http_client.end();
+    delay(20);
     return 0;
   }
-  // Free resources
-  http_client.end();
-  delay(20);
 }
 
 //Save data to the top of the specified data list.  保存数据至指定数据列表首位
@@ -66,14 +69,17 @@ int addToList(const char *token,const char *list,int val){
   if(httpResponseCode == HTTP_CODE_OK){
     Serial.printf("Sending data to %s",list);
     Serial.println(ouput);
+    // Free resources
+    http_client.end();
+    delay(20);
     return 1;
   }else{
     Serial.printf("Fail to save data,response code:%d\n",httpResponseCode);
+    // Free resources
+    http_client.end();
+    delay(20);
     return 0;
   }
-  // Free resources
-  http_client.end();
-  delay(20);
 }
 
 //Delete topic or list, and clear the queue data.  删除指定topic或list，并清空数据
@@ -84,13 +90,17 @@ int removeData(const char *token, const char *field){
   int httpResponseCode = http_client.POST("");
   if(httpResponseCode == HTTP_CODE_OK){
     Serial.printf("Successfully remove the data in '%s'\n",field);
+    // Free resources
+    http_client.end();
+    delay(20);
     return 1;
   }else{
     Serial.printf("Fail to remove data,response code:%d\n",httpResponseCode);
+    // Free resources
+    http_client.end();
+    delay(20);
     return 0;
   }
-  // Free resources
-  http_client.end();
 }
 
 /*
@@ -111,12 +121,13 @@ int* getData(const char *token, const char *list, int *Array, int offset, int co
       Array[i-offset] = doc["data"][i].as<int>();
     }
     Serial.print("Success to get data\n");
+    http_client.end();
     return Array; //返回数组的地址
   }else{
     Serial.printf("Fail to get data,response code:%d\n", httpResponseCode);
+    http_client.end();
     return 0;
   }
-  http_client.end();
 }
 
 //Get data from the top of the specified topic queue.  从指定的topic队列首位获取一个数据
@@ -129,10 +140,14 @@ int getData(const char *token, const char *topic, int& result){
     deserializeJson(doc, http_client.getString());
     Serial.print("Success to get data\n");
     result = doc["data"].as<int>();
+    http_client.end();
     return 1;
   }else{
     Serial.printf("Fail to get data,response code:%d\n", httpResponseCode);
+
+
+  http_client.end();
     return 0;
   }
-  http_client.end();
+
 }
