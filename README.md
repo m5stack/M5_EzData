@@ -1,5 +1,8 @@
 # EzData
 
+[![Arduino Lint](https://github.com/m5stack/M5_EzData/actions/workflows/Arduino-Lint-Check.yml/badge.svg)](https://github.com/m5stack/M5_EzData/actions/workflows/Arduino-Lint-Check.yml)
+[![Clang Format](https://github.com/m5stack/M5_EzData/actions/workflows/clang-format-check.yml/badge.svg)](https://github.com/m5stack/M5_EzData/actions/workflows/clang-format-check.yml)
+
 ## Function Description
 
 EzData is an IoT cloud data storage service provided by M5Stack. Different devices can insert or extract data into the storage queue through the unique token to realize data sharing.
