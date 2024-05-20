@@ -9,7 +9,7 @@ EzData is an IoT cloud data storage service provided by M5Stack. Different devic
 
 <img src="https://static-cdn.m5stack.com/resource/docs/static/image/iotservice/ezdata/ezdata_01.webp" width="100%">
 
-[Click here for more information and token](https://docs.m5stack.com/en/arduino/iotservice/ezdata)
+[Click here for more information and token](http://docs.m5stack.com/en/guide/ezdata/ezdata_v1_arduino)
 
 Precautions：<br>1. All the following operations depend on the `unique token`, which is fixed in the same browser environment. Please copy the token before use.
 <br>2. If no data operation is performed within half a year, the data queue corresponding to the token will be cleared.
